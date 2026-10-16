@@ -1,0 +1,8 @@
+{
+  "name": "SHD M Supply System: Admin Dashboard",
+  "description": "Clinic medicine stock management dashboard following the Report & Requisition model with cold chain monitoring, batch expiry tracking, and requisition approval.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
