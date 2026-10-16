@@ -92,6 +92,13 @@ export default function App() {
     }
   }, [isAuthenticated, loadData]);
 
+  // Backend rejected our token (expired/invalid): return to the login screen.
+  useEffect(() => {
+    const onUnauthorized = () => setIsAuthenticated(false);
+    window.addEventListener('shd:unauthorized', onUnauthorized);
+    return () => window.removeEventListener('shd:unauthorized', onUnauthorized);
+  }, []);
+
   // Handle clinic stock inspection link
   const handleSelectClinicStock = (clinicId: string) => {
     setSelectedClinicStockId(clinicId);

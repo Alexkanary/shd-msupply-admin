@@ -1,3 +1,6 @@
+import { isRestMode, request, ApiError } from './api';
+
+const MUST_CHANGE_KEY = 'shd_msupply_must_change_password';
 const CREDENTIALS_KEY = 'shd_msupply_admin_credentials';
 const SESSION_KEY = 'shd_msupply_session_token';
 const SESSION_USER_KEY = 'shd_msupply_session_user';
@@ -34,6 +37,8 @@ function getCredentials(): { username: string; passwordHash: string; isCustom: b
 }
 
 export function isUsingDefaultCredentials(): boolean {
+  // With a real backend, the server decides (must_change_password flag from login).
+  if (isRestMode()) return localStorage.getItem(MUST_CHANGE_KEY) === '1';
   return !getCredentials().isCustom;
 }
 
@@ -48,7 +53,25 @@ export function getCurrentUser(): { id: string; username: string } | null {
   }
 }
 
-export function login(usernameInput: string, passwordInput: string): { success: boolean; error?: string } {
+export async function login(usernameInput: string, passwordInput: string): Promise<{ success: boolean; error?: string }> {
+  if (isRestMode()) {
+    try {
+      const res = await request<{
+        token: string;
+        user: { id: string; username: string; role?: string };
+        must_change_password?: boolean;
+      }>('POST', '/auth/login', { username: usernameInput.trim(), password: passwordInput }, false);
+      localStorage.setItem(SESSION_KEY, res.token);
+      localStorage.setItem(SESSION_USER_KEY, JSON.stringify({ id: res.user.id, username: res.user.username }));
+      localStorage.setItem(MUST_CHANGE_KEY, res.must_change_password ? '1' : '0');
+      return { success: true };
+    } catch (e) {
+      if (e instanceof ApiError && e.status === 0) return { success: false, error: e.message };
+      if (e instanceof ApiError && e.status === 401) return { success: false, error: 'Invalid username or password.' };
+      return { success: false, error: e instanceof Error ? e.message : 'Login failed.' };
+    }
+  }
+
   const creds = getCredentials();
   const cleanUser = usernameInput.trim();
 
@@ -66,13 +89,40 @@ export function login(usernameInput: string, passwordInput: string): { success: 
 export function logout(): void {
   localStorage.removeItem(SESSION_KEY);
   localStorage.removeItem(SESSION_USER_KEY);
+  localStorage.removeItem(MUST_CHANGE_KEY);
 }
 
-export function updateCredentials(
+export async function updateCredentials(
   currentPassword: string,
   newUsername: string,
   newPassword: string
-): { success: boolean; error?: string } {
+): Promise<{ success: boolean; error?: string }> {
+  if (isRestMode()) {
+    if (!newUsername.trim() || newUsername.trim().length < 3) {
+      return { success: false, error: 'New username must be at least 3 characters long.' };
+    }
+    if (!newPassword || newPassword.length < 6) {
+      return { success: false, error: 'New password must be at least 6 characters long.' };
+    }
+    try {
+      // Backend returns a fresh token + user (username may have changed), so store them.
+      const res = await request<{
+        token: string;
+        user: { id: string; username: string; role?: string };
+      }>('POST', '/auth/change-password', {
+        current_password: currentPassword,
+        new_password: newPassword,
+        new_username: newUsername.trim(),
+      });
+      localStorage.setItem(SESSION_KEY, res.token);
+      localStorage.setItem(SESSION_USER_KEY, JSON.stringify({ id: res.user.id, username: res.user.username }));
+      localStorage.setItem(MUST_CHANGE_KEY, '0');
+      return { success: true };
+    } catch (e) {
+      return { success: false, error: e instanceof Error ? e.message : 'Failed to update credentials.' };
+    }
+  }
+
   const creds = getCredentials();
 
   if (currentPassword !== creds.passwordHash) {

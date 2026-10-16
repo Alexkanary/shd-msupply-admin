@@ -28,20 +28,20 @@ export function LoginView({ onSuccess }: LoginViewProps) {
   const [loading, setLoading] = useState(false);
   const isDefault = isUsingDefaultCredentials();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
-
-    setTimeout(() => {
-      const res = login(username, password);
+    try {
+      const res = await login(username, password);
       if (res.success) {
         onSuccess();
       } else {
         setError(res.error || 'Authentication failed. Please verify credentials.');
       }
+    } finally {
       setLoading(false);
-    }, 250);
+    }
   };
 
   const fillDefaults = () => {

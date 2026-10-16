@@ -73,7 +73,7 @@ export function SettingsView({ onDataReset }: SettingsViewProps) {
   const [resetting, setResetting] = useState<boolean>(false);
   const [resetSuccess, setResetSuccess] = useState<boolean>(false);
 
-  const handleUpdatePassword = (e: React.FormEvent) => {
+  const handleUpdatePassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setCredError(null);
     setCredSuccess(null);
@@ -83,7 +83,7 @@ export function SettingsView({ onDataReset }: SettingsViewProps) {
       return;
     }
 
-    const res = updateCredentials(currentPassword, newUsername, newPassword);
+    const res = await updateCredentials(currentPassword, newUsername, newPassword);
     if (res.success) {
       setCredSuccess('Admin credentials updated successfully! The default password no longer works.');
       setCurrentPassword('');
@@ -129,11 +129,16 @@ export function SettingsView({ onDataReset }: SettingsViewProps) {
       )
     ) {
       setResetting(true);
-      await api.resetAllData();
-      setResetSuccess(true);
-      setResetting(false);
-      onDataReset();
-      setTimeout(() => setResetSuccess(false), 3000);
+      try {
+        await api.resetAllData();
+        setResetSuccess(true);
+        onDataReset();
+        setTimeout(() => setResetSuccess(false), 3000);
+      } catch (err) {
+        alert(err instanceof Error ? err.message : String(err));
+      } finally {
+        setResetting(false);
+      }
     }
   };
 
