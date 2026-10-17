@@ -30,6 +30,7 @@ import {
 import { getApiBaseUrl, setApiBaseUrl, api } from '../../services/api';
 import { useLanguage, SUPPORTED_LANGUAGES } from '../../services/i18n';
 import { LanguageSelector } from '../common/LanguageSelector';
+import { FlagIcon } from '../common/FlagIcon';
 
 interface SettingsViewProps {
   onDataReset: () => void;
@@ -183,10 +184,12 @@ export function SettingsView({ onDataReset }: SettingsViewProps) {
           <div className="mt-3 p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs text-slate-600">
             <div className="flex items-center gap-2">
               <span className="font-bold text-slate-800">Current Active Language:</span>
-              <span className="font-semibold text-teal-700 bg-teal-50 border border-teal-200 px-2 py-0.5 rounded">
-                {SUPPORTED_LANGUAGES.find((l) => l.code === language)?.flag}{' '}
-                {SUPPORTED_LANGUAGES.find((l) => l.code === language)?.nativeName} (
-                {SUPPORTED_LANGUAGES.find((l) => l.code === language)?.name})
+              <span className="inline-flex items-center gap-1.5 font-semibold text-teal-700 bg-teal-50 border border-teal-200 px-2 py-0.5 rounded">
+                <FlagIcon code={language} size="sm" />
+                <span>
+                  {SUPPORTED_LANGUAGES.find((l) => l.code === language)?.nativeName} (
+                  {SUPPORTED_LANGUAGES.find((l) => l.code === language)?.name})
+                </span>
               </span>
             </div>
             <span className="text-slate-400 text-[11px]">Instant Switch • Saved to Device</span>

@@ -14,6 +14,7 @@ import { getCurrentUser, isUsingDefaultCredentials, logout } from '../../service
 import { getApiBaseUrl } from '../../services/api';
 import { useLanguage } from '../../services/i18n';
 import { LanguageSelector } from '../common/LanguageSelector';
+import { ShanHealthLogo } from '../common/ShanHealthLogo';
 
 interface TopBarProps {
   onOpenSimulate: () => void;
@@ -44,32 +45,42 @@ export function TopBar({ onOpenSimulate, onNavigateSettings, onLogout }: TopBarP
 
   return (
     <header className="no-print bg-white border-b border-slate-200 px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-xs sticky top-0 z-40">
-      {/* Live Clock with Real Device/Configured Time Zone */}
-      <div className="flex items-center gap-2.5 min-w-0">
-        <div className="h-8 w-8 rounded-lg bg-teal-50 border border-teal-200/60 flex items-center justify-center text-teal-700 shrink-0">
-          <Clock className="w-4 h-4 animate-pulse" />
+      {/* Brand & Live Clock */}
+      <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+        <div className="flex items-center gap-2 pr-3 sm:pr-4 border-r border-slate-200 shrink-0">
+          <ShanHealthLogo size="sm" className="w-8 h-8 shrink-0" />
+          <span className="font-extrabold text-sm sm:text-base tracking-tight text-slate-900 font-sans">
+            SHDmSupply
+          </span>
         </div>
-        <div className="min-w-0">
-          <div className="flex items-center gap-1.5">
-            <span className="font-mono text-xs sm:text-sm font-semibold tracking-tight text-slate-800 truncate">
-              {clockString || 'Loading clock...'}
-            </span>
+
+        {/* Live Clock with Real Device/Configured Time Zone */}
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="h-8 w-8 rounded-lg bg-teal-50 border border-teal-200/60 flex items-center justify-center text-teal-700 shrink-0">
+            <Clock className="w-4 h-4 animate-pulse" />
           </div>
-          <div className="flex items-center gap-2 text-[11px] text-slate-500 font-medium">
-            <span className="inline-flex items-center gap-1 text-teal-700">
-              <Globe className="w-3 h-3" />
-              <span>{t('timezone')}:</span>
-              <button
-                type="button"
-                onClick={onNavigateSettings}
-                className="underline hover:text-teal-900 cursor-pointer"
-                title="Change display timezone in settings"
-              >
-                {currentTimezone}
-              </button>
-            </span>
-            <span className="text-slate-300">•</span>
-            <span className="text-slate-400 hidden lg:inline">{t('allDatesFormattedIn')}</span>
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5">
+              <span className="font-mono text-xs sm:text-sm font-semibold tracking-tight text-slate-800 truncate">
+                {clockString || 'Loading clock...'}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-[11px] text-slate-500 font-medium">
+              <span className="inline-flex items-center gap-1 text-teal-700">
+                <Globe className="w-3 h-3" />
+                <span>{t('timezone')}:</span>
+                <button
+                  type="button"
+                  onClick={onNavigateSettings}
+                  className="underline hover:text-teal-900 cursor-pointer"
+                  title="Change display timezone in settings"
+                >
+                  {currentTimezone}
+                </button>
+              </span>
+              <span className="text-slate-300">•</span>
+              <span className="text-slate-400 hidden lg:inline">{t('allDatesFormattedIn')}</span>
+            </div>
           </div>
         </div>
       </div>

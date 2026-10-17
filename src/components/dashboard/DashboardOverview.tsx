@@ -16,6 +16,7 @@ import { Clinic, Batch, Item, Requisition, Report, Equipment, Excursion } from '
 import { getExpiryStatus, formatDate, formatDateTime } from '../../services/time';
 import { NavTab } from '../layout/Sidebar';
 import { useLanguage } from '../../services/i18n';
+import { ShanHealthLogo } from '../common/ShanHealthLogo';
 
 interface DashboardOverviewProps {
   clinics: Clinic[];
@@ -91,9 +92,17 @@ export function DashboardOverview({
       {/* Top Banner / Welcome */}
       <div className="bg-gradient-to-r from-teal-800 to-slate-900 rounded-2xl p-6 text-white shadow-md relative overflow-hidden">
         <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-semibold mb-3 border border-teal-400/20">
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-            {t('subTagline')}
+          <div className="flex items-center gap-2.5 mb-3 flex-wrap">
+            <div className="flex items-center gap-2 bg-slate-900/50 backdrop-blur-xs px-2.5 py-1 rounded-full border border-teal-400/30">
+              <ShanHealthLogo size="sm" className="w-6 h-6 rounded-full bg-white p-0.5 shrink-0" />
+              <span className="font-extrabold text-sm tracking-tight text-white font-sans">
+                SHDmSupply
+              </span>
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-semibold border border-teal-400/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+              {t('subTagline')}
+            </div>
           </div>
           <h2 className="text-2xl font-bold tracking-tight">
             {t('overviewTitle')}

@@ -13,6 +13,8 @@ import {
 import { login, isUsingDefaultCredentials } from '../../services/auth';
 import { useLanguage, SUPPORTED_LANGUAGES } from '../../services/i18n';
 import { LanguageSelector } from '../common/LanguageSelector';
+import { FlagIcon } from '../common/FlagIcon';
+import { ShanHealthLogo } from '../common/ShanHealthLogo';
 
 interface LoginViewProps {
   onSuccess: () => void;
@@ -71,7 +73,7 @@ export function LoginView({ onSuccess }: LoginViewProps) {
                   : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
               }`}
             >
-              <span>{opt.flag}</span>
+              <FlagIcon code={opt.code} size="sm" />
               <span>{opt.nativeName}</span>
             </button>
           );
@@ -81,15 +83,17 @@ export function LoginView({ onSuccess }: LoginViewProps) {
       <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden relative z-10">
         {/* Brand Header */}
         <div className="p-8 pb-6 bg-gradient-to-b from-teal-50/70 to-white border-b border-slate-100 text-center">
-          <div className="inline-flex h-14 w-14 rounded-2xl bg-gradient-to-tr from-teal-600 to-emerald-500 items-center justify-center text-white shadow-lg shadow-teal-600/20 mb-4">
-            <HeartPulse className="w-8 h-8" />
+          <div className="flex items-center justify-center gap-3.5 mb-2">
+            <ShanHealthLogo size="xl" className="w-16 h-16 shadow-md ring-2 ring-emerald-500/20 shrink-0" />
+            <div className="text-left">
+              <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 font-sans leading-none">
+                {t('appName')}
+              </h1>
+              <p className="text-xs font-semibold text-teal-700 tracking-wide uppercase mt-1">
+                {t('dashboardTitle')}
+              </p>
+            </div>
           </div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">
-            {t('appName')}
-          </h1>
-          <p className="text-xs font-semibold text-teal-700 tracking-wide uppercase mt-1">
-            {t('dashboardTitle')}
-          </p>
           <p className="text-xs text-slate-500 mt-2">
             {t('subTagline')}
           </p>

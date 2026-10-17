@@ -18,6 +18,7 @@ import {
 import { Requisition, Clinic, Item, RequisitionStatus } from '../../types';
 import { formatDateTime, formatDate, getSelectedTimezone } from '../../services/time';
 import { api } from '../../services/api';
+import { ShanHealthLogo } from '../common/ShanHealthLogo';
 
 interface RequisitionsViewProps {
   requisitions: Requisition[];

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Globe, Check, ChevronDown } from 'lucide-react';
 import { useLanguage, SUPPORTED_LANGUAGES, Language } from '../../services/i18n.tsx';
+import { FlagIcon } from './FlagIcon';
 
 interface LanguageSelectorProps {
   variant?: 'compact' | 'cards' | 'segmented';
@@ -47,7 +48,7 @@ export function LanguageSelector({
               }`}
               title={opt.name}
             >
-              <span>{opt.flag}</span>
+              <FlagIcon code={opt.code} size="sm" />
               <span>{opt.nativeName}</span>
             </button>
           );
@@ -72,8 +73,8 @@ export function LanguageSelector({
                   : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
               }`}
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-2xl">{opt.flag}</span>
+              <div className="flex items-center justify-between mb-3">
+                <FlagIcon code={opt.code} size="xl" />
                 {isSelected && (
                   <span className="h-5 w-5 rounded-full bg-teal-600 text-white flex items-center justify-center">
                     <Check className="w-3 h-3 stroke-[3]" />
@@ -106,10 +107,10 @@ export function LanguageSelector({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200/80 text-slate-800 transition-colors border border-slate-200 cursor-pointer shadow-2xs"
+        className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200/80 text-slate-800 transition-colors border border-slate-200 cursor-pointer shadow-2xs"
         aria-expanded={isOpen}
       >
-        <span className="text-sm">{currentOption.flag}</span>
+        <FlagIcon code={currentOption.code} size="md" />
         <span className="font-medium hidden sm:inline">{currentOption.nativeName}</span>
         <span className="font-mono text-[10px] uppercase sm:hidden">{currentOption.code}</span>
         <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
@@ -139,7 +140,7 @@ export function LanguageSelector({
                 }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <span className="text-base">{opt.flag}</span>
+                  <FlagIcon code={opt.code} size="md" />
                   <div className="text-left">
                     <div className="text-xs font-medium text-slate-900">{opt.nativeName}</div>
                     <div className="text-[10px] text-slate-400">{opt.name}</div>

@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Shadow filter for 3D depth matching the emblem -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="goldGlow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="#604000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="textShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="1" dy="1.5" stdDeviation="0.8" flood-color="#1a3300" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Curved Text Paths -->
+    <!-- Top arc for Shan text -->
+    <path id="topArc" d="M 60,200 A 140,140 0 0,1 340,200" fill="none" />
+    <!-- Bottom arc for English text -->
+    <path id="bottomArc" d="M 52,200 A 148,148 0 0,0 348,200" fill="none" />
+
+    <!-- Gold Gradients for Caduceus -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF275"/>
+      <stop offset="35%" stop-color="#FFD700"/>
+      <stop offset="70%" stop-color="#D49B00"/>
+      <stop offset="100%" stop-color="#996500"/>
+    </linearGradient>
+    <linearGradient id="goldWing" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8A6"/>
+      <stop offset="50%" stop-color="#FFDF1B"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Ring (Green) -->
+  <circle cx="200" cy="200" r="192" fill="#8CD347" stroke="#68B026" stroke-width="4"/>
+
+  <!-- Inner White Circle -->
+  <circle cx="200" cy="200" r="126" fill="#FFFFFF" stroke="#256B1B" stroke-width="3.5" filter="url(#dropShadow)"/>
+
+  <!-- Red Cross -->
+  <g filter="url(#dropShadow)">
+    <rect x="164" y="88" width="72" height="224" rx="4" fill="#E60000"/>
+    <rect x="88" y="164" width="224" height="72" rx="4" fill="#E60000"/>
+    <!-- Subtle 3D bevel effect on red cross -->
+    <rect x="166" y="90" width="68" height="220" rx="3" fill="none" stroke="#FF5959" stroke-width="1.5" opacity="0.4"/>
+    <rect x="90" y="166" width="220" height="68" rx="3" fill="none" stroke="#FF5959" stroke-width="1.5" opacity="0.4"/>
+  </g>
+
+  <!-- Golden Caduceus (Staff, Wings, Entwined Serpents) -->
+  <g filter="url(#goldGlow)">
+    <!-- Outstretched Wings -->
+    <g fill="url(#goldWing)" stroke="#8A6000" stroke-width="1.2">
+      <!-- Left Wing Feathers -->
+      <path d="M 195,148 C 170,128 132,118 96,140 C 114,152 134,158 152,165 C 132,168 116,176 108,188 C 126,188 148,185 168,181 C 150,188 138,198 132,208 C 150,204 172,196 195,182 Z"/>
+      <!-- Right Wing Feathers -->
+      <path d="M 205,148 C 230,128 268,118 304,140 C 286,152 266,158 248,165 C 268,168 284,176 292,188 C 274,188 252,185 232,181 C 250,188 262,198 268,208 C 250,204 228,196 205,182 Z"/>
+    </g>
+
+    <!-- Central Staff -->
+    <!-- Top Globe Knob -->
+    <circle cx="200" cy="120" r="14" fill="url(#goldGrad)" stroke="#8A6000" stroke-width="1.5"/>
+    <ellipse cx="197" cy="116" rx="4" ry="2.5" fill="#FFFFFF" opacity="0.7"/>
+    <!-- Staff Rod -->
+    <path d="M 197,126 L 203,126 L 201,310 L 199,310 Z" fill="url(#goldGrad)" stroke="#7A5200" stroke-width="1"/>
+    <!-- Staff Bottom Finial -->
+    <polygon points="196,310 204,310 200,320" fill="url(#goldGrad)" stroke="#7A5200" stroke-width="1"/>
+
+    <!-- Two Entwined Serpents (Gold with green-brown shading) -->
+    <g fill="none" stroke="url(#goldGrad)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Left to Right Snake Waves -->
+      <path d="M 184,150 C 172,160 172,182 195,195 C 228,212 228,235 198,252 C 172,268 178,288 200,300"/>
+      <!-- Right to Left Snake Waves -->
+      <path d="M 216,150 C 228,160 228,182 205,195 C 172,212 172,235 202,252 C 228,268 222,288 200,300"/>
+    </g>
+    <!-- Snake Heads facing the staff knob -->
+    <g fill="url(#goldGrad)" stroke="#8A6000" stroke-width="1">
+      <!-- Left Snake Head -->
+      <path d="M 183,148 C 180,140 188,136 195,142 C 190,148 186,152 183,148 Z"/>
+      <circle cx="187" cy="142" r="1.5" fill="#4A1000"/>
+      <!-- Right Snake Head -->
+      <path d="M 217,148 C 220,140 212,136 205,142 C 210,148 214,152 217,148 Z"/>
+      <circle cx="213" cy="142" r="1.5" fill="#4A1000"/>
+    </g>
+  </g>
+
+  <!-- Flanking 8-pointed Stars (White) -->
+  <!-- Left Star -->
+  <g transform="translate(42, 190) scale(1.1)" filter="url(#dropShadow)">
+    <polygon points="0,-12 3,-4 11,-4 5,2 8,10 0,5 -8,10 -5,2 -11,-4 -3,-4" fill="#FFFFFF"/>
+    <polygon points="0,-12 3,-4 11,-4 5,2 8,10 0,5 -8,10 -5,2 -11,-4 -3,-4" fill="#FFFFFF" transform="rotate(45)"/>
+  </g>
+  <!-- Right Star -->
+  <g transform="translate(358, 190) scale(1.1)" filter="url(#dropShadow)">
+    <polygon points="0,-12 3,-4 11,-4 5,2 8,10 0,5 -8,10 -5,2 -11,-4 -3,-4" fill="#FFFFFF"/>
+    <polygon points="0,-12 3,-4 11,-4 5,2 8,10 0,5 -8,10 -5,2 -11,-4 -3,-4" fill="#FFFFFF" transform="rotate(45)"/>
+  </g>
+
+  <!-- Top Shan Script along Curved Path -->
+  <text font-family="'Noto Sans Myanmar', 'Padauk', sans-serif" font-size="34" font-weight="bold" fill="#FFFFFF" filter="url(#textShadow)" letter-spacing="3">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+      ၸုမ်းၵၢၼ်လုမ်း ပၢႆးယူႇလီ
+    </textPath>
+  </text>
+
+  <!-- Bottom English Text along Curved Path: "Shan Health Department" -->
+  <text font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="28" font-weight="900" fill="#E81717" stroke="#7A0000" stroke-width="0.8" filter="url(#dropShadow)" letter-spacing="1.5">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
+      Shan Health Department
+    </textPath>
+  </text>
+</svg>

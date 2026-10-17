@@ -12,6 +12,7 @@ import {
   HeartPulse,
 } from 'lucide-react';
 import { useLanguage } from '../../services/i18n';
+import { ShanHealthLogo } from '../common/ShanHealthLogo';
 
 export type NavTab =
   | 'dashboard'
@@ -105,16 +106,14 @@ export function Sidebar({ currentTab, onSelectTab, counts }: SidebarProps) {
       {/* Brand Header */}
       <div className="p-5 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white shadow-md shadow-teal-900/30">
-            <HeartPulse className="w-6 h-6" />
-          </div>
-          <div>
-            <h1 className="font-bold text-base leading-tight tracking-tight text-white">
+          <ShanHealthLogo size="md" className="w-11 h-11 shrink-0" />
+          <div className="min-w-0">
+            <h1 className="font-extrabold text-base leading-tight tracking-tight text-white font-sans truncate">
               {t('appName')}
             </h1>
-            <p className="text-xs text-teal-400 font-medium flex items-center gap-1.5 mt-0.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping" />
-              {t('dashboardTitle')}
+            <p className="text-xs text-teal-400 font-medium flex items-center gap-1.5 mt-0.5 truncate">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping shrink-0" />
+              <span>{t('dashboardTitle')}</span>
             </p>
           </div>
         </div>

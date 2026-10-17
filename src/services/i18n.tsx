@@ -20,7 +20,7 @@ export const SUPPORTED_LANGUAGES: LanguageOption[] = [
 export const translations = {
   en: {
     // Brand & App
-    appName: 'SHD M Supply',
+    appName: 'SHDmSupply',
     dashboardTitle: 'Admin Dashboard',
     tagline: 'Clinic Medicine Stock Management',
     subTagline: 'Report & Requisition Model • Periodic Stock',
@@ -161,7 +161,7 @@ export const translations = {
 
   my: {
     // Burmese (မြန်မာဘာသာ)
-    appName: 'SHD အမ်-ဆပ်ပလိုင်း',
+    appName: 'SHDmSupply',
     dashboardTitle: 'စီမံခန့်ခွဲမှု ဒက်ရှ်ဘုတ်',
     tagline: 'ဆေးခန်းသုံး ဆေးဝါးသိုလှောင်မှု စီမံခန့်ခွဲရေးစနစ်',
     subTagline: 'အစီရင်ခံစာနှင့် တောင်းခံလွှာစနစ် (Report & Requisition)',
@@ -302,7 +302,7 @@ export const translations = {
 
   th: {
     // Thai (ภาษาไทย)
-    appName: 'SHD M Supply',
+    appName: 'SHDmSupply',
     dashboardTitle: 'แดชบอร์ดผู้ดูแลระบบ',
     tagline: 'ระบบบริหารจัดการคลังเวชภัณฑ์ประจำคลินิก',
     subTagline: 'ระบบรายงานสต็อกและใบเบิกยา (Report & Requisition Model)',
@@ -443,7 +443,7 @@ export const translations = {
 
   shn: {
     // Shan (လိၵ်ႈတႆး)
-    appName: 'SHD ဢႅမ်ႇ-သပ်ႉပလၢႆး',
+    appName: 'SHDmSupply',
     dashboardTitle: 'ၽိူၼ်ပွင်ၵၢၼ် ၽူႈၵုမ်းၵမ်',
     tagline: 'လွၵ်းပိူင်ၵုမ်းၵမ် ယႃႈယႃႁူင်းယႃပၢႆးယူႇလီ',
     subTagline: 'လွၵ်းပိူင် လိၵ်ႈတၢင်ႇလၢတ်ႈ လႄႈ လိၵ်ႈယွၼ်း (Report & Requisition)',
